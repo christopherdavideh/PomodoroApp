@@ -1,0 +1,31 @@
+{
+  "Version": 1,
+  "ProjectMap": {
+    "27ddd6de-2872-46b1-8e09-7a06d3a9d98f": {
+      "ProjectGuid": "27ddd6de-2872-46b1-8e09-7a06d3a9d98f",
+      "DisplayName": "PomodoroApp",
+      "ColorIndex": 0
+    },
+    "386073d9-3b2d-4049-a78c-dd25cd05c47b": {
+      "ProjectGuid": "386073d9-3b2d-4049-a78c-dd25cd05c47b",
+      "DisplayName": "PomodoroApp.UWP",
+      "ColorIndex": 1
+    },
+    "a2fe74e1-b743-11d0-ae1a-00a0c90fffc3": {
+      "ProjectGuid": "a2fe74e1-b743-11d0-ae1a-00a0c90fffc3",
+      "DisplayName": "Miscellaneous Files",
+      "ColorIndex": -1
+    },
+    "342fcfb2-d224-4130-840f-97afc2476508": {
+      "ProjectGuid": "342fcfb2-d224-4130-840f-97afc2476508",
+      "DisplayName": "PomodoroApp.Android",
+      "ColorIndex": 2
+    },
+    "2a386490-cf15-48c1-98bd-d34ffe640020": {
+      "ProjectGuid": "2a386490-cf15-48c1-98bd-d34ffe640020",
+      "DisplayName": "PomodoroApp.iOS",
+      "ColorIndex": 3
+    }
+  },
+  "NextColorIndex": 4
+}

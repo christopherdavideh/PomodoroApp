@@ -1,0 +1,96 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="PomodoroApp.Views.SettingsPage"
+             xmlns:vm="clr-namespace:PomodoroApp.ViewModels"
+             Shell.BackgroundColor="{StaticResource Primary}"
+             Title="{Binding Title}">
+    <ContentPage.BindingContext>
+        <vm:SettingsViewModel />
+    </ContentPage.BindingContext>
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Text="Guardar" Command="{Binding SaveCommand}" />
+    </ContentPage.ToolbarItems>
+    <ContentPage.Content>
+        <AbsoluteLayout BackgroundColor="{StaticResource ColorSelected}">
+            <StackLayout AbsoluteLayout.LayoutBounds="0, 0, 1, 1" AbsoluteLayout.LayoutFlags="All">
+                <Frame CornerRadius="20" Margin="0,10">
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition />
+                        </Grid.ColumnDefinitions>
+                        <Image Source="clock.png" WidthRequest="64"/>
+                        <StackLayout Grid.Column="1" Margin="10,0">
+                            <Label Text="Duracion del Pomodoro" FontSize="Subtitle" TextColor="Black" FontAttributes="Bold"/>
+                            <Picker Title="Selecione tiempo de Duracion"
+                                ItemsSource="{Binding PomodoroDurations}"
+                                SelectedItem="{Binding SelectedPomodoroDurations, Mode=TwoWay}" />
+                        </StackLayout>
+                    </Grid>
+                </Frame>
+                <Frame CornerRadius="20"  Margin="0,10">
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition />
+                        </Grid.ColumnDefinitions>
+                        <Image Source="pause.png" WidthRequest="64"/>
+                        <StackLayout Grid.Column="1" Margin="10,0">
+                            <Label Text="Duracion de la Pausa" FontSize="Subtitle" TextColor="Black" FontAttributes="Bold"/>
+                            <Picker Title="Selecione tiempo de Pausa"
+                                ItemsSource="{Binding BreakDurations}"
+                                SelectedItem="{Binding SelectedBreakDurations, Mode=TwoWay}" />
+                        </StackLayout>
+                    </Grid>                    
+                </Frame>
+            </StackLayout>
+            <ContentView x:Name="popupAddItem"                                             
+                         BackgroundColor="#C0808080"
+                         Padding="10,0"
+                         IsVisible="{Binding IsBusy}"
+                         AbsoluteLayout.LayoutBounds="0, 0, 1, 1"
+                         AbsoluteLayout.LayoutFlags="All">
+                <Frame VerticalOptions="Center" HorizontalOptions="Center" CornerRadius="20" 
+                                BackgroundColor="#29415e">
+                    <StackLayout Orientation="Vertical"                              
+                                HeightRequest="100"
+                                WidthRequest="110">
+                        <StackLayout VerticalOptions="Center" HorizontalOptions="CenterAndExpand" Padding="5">
+                            <Label FontAttributes="Bold"
+                                   FontSize="Small"
+                                   HorizontalTextAlignment="Center"
+                                   TextColor="White"
+                                   Text="Guardando la configuracion"
+                                   Margin="0,0,0,10"/>
+
+                            <ActivityIndicator Color="{StaticResource Secondary}"
+                                                IsVisible="{Binding IsBusy}" 
+                                                IsRunning="{Binding IsBusy}" />
+                        </StackLayout>
+                    </StackLayout>
+                </Frame>
+            </ContentView>
+            <ContentView x:Name="popupErrorItem"      
+                         Padding="10,0"
+                         IsVisible="{Binding IsError}"
+                         AbsoluteLayout.LayoutBounds="0, 0, 1, 1.8"
+                         AbsoluteLayout.LayoutFlags="All">
+                <Frame VerticalOptions="Center" HorizontalOptions="Center" CornerRadius="20" 
+                                BackgroundColor="{StaticResource PomodoroRed}">
+                    <StackLayout Orientation="Vertical"                              
+                                HeightRequest="15"
+                                WidthRequest="230">
+                        <StackLayout HorizontalOptions="CenterAndExpand">
+                            <Label FontAttributes="Bold"
+                                   FontSize="Small"
+                                   HorizontalTextAlignment="Center"
+                                   TextColor="White"
+                                   Text="{Binding Error}" />
+                        </StackLayout>
+                    </StackLayout>
+                </Frame>
+            </ContentView>
+        </AbsoluteLayout>
+    </ContentPage.Content>
+</ContentPage>

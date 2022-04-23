@@ -1,0 +1,42 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" xmlns:viewmodels="clr-namespace:PomodoroApp.ViewModels" 
+             xmlns:model="clr-namespace:PomodoroApp.Models"
+             x:Class="PomodoroApp.Views.HistoryPage"
+             Title="{Binding Title}">
+    <ContentPage.BindingContext>
+        <viewmodels:HistoryViewModel/>
+    </ContentPage.BindingContext>
+    <ContentPage.ToolbarItems>
+        <ToolbarItem IconImageSource="plus_icon" Command="{Binding AddPomodoroCommand}" />
+    </ContentPage.ToolbarItems>
+    <ContentPage.Content>
+        <StackLayout>
+            <RefreshView x:DataType="viewmodels:HistoryViewModel" Command="{Binding LoadPomodoroCommand}" IsRefreshing="{Binding IsBusy, Mode=TwoWay}">
+                <CollectionView x:Name="ItemsListView"
+                ItemsSource="{Binding Pomodoros}"
+                SelectionMode="None">
+                    <CollectionView.ItemTemplate>
+                        <DataTemplate>
+                            <StackLayout Padding="10" x:DataType="model:Pomodoro">
+                                <Label Text="{Binding Name}" 
+                                        LineBreakMode="NoWrap" 
+                                        FontSize="16" />    
+                                <Label Text="{Binding Count}" 
+                                        LineBreakMode="NoWrap"
+                                        FontSize="13" />
+                                <StackLayout.GestureRecognizers>
+                                    <TapGestureRecognizer 
+                                        NumberOfTapsRequired="1"
+                                        Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodels:HistoryViewModel}}, Path=PomodoroTapped}"		
+                                        CommandParameter="{Binding .}">
+                                    </TapGestureRecognizer>
+                                </StackLayout.GestureRecognizers>
+                            </StackLayout>
+                        </DataTemplate>
+                    </CollectionView.ItemTemplate>
+                </CollectionView>
+            </RefreshView>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>
